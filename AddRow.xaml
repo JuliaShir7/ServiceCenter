@@ -1,0 +1,404 @@
+﻿<Window x:Class="Курсовая_по_БДиЭС.AddRow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Курсовая_по_БДиЭС"
+        mc:Ignorable="d"
+        Title="AddRow" Height="300" MaxWidth="1000" MinWidth="1000" WindowStartupLocation="CenterScreen" Background="#def2f1">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="TextBoxStyle" BasedOn="{StaticResource {x:Type TextBox}}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="MaxWidth" Value="200"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="BorderBrush" Value="#3aafa9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 10 10"/>
+        </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MaxWidth" Value="150"/>
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#c7edeb"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="50 0 0 0"/>
+            <Setter Property="BorderBrush" Value="#3aafa9"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle" >
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="MaxWidth" Value="200"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="-10 0 0 0"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="mainView">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="970*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="Equipment" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Наименование</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_name"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Производитель</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_manufacturer"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Manufacturer, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="5" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Модель</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_model"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Model, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="7"  Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Margin="0 " MinWidth="200">Гарантийный период</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_warrantyPeriod" Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.WarrantyPeriod, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Серийный номер</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_seriaNum"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.SeriaNum, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Дата покупки</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_purchaseDate"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.PurchaseDate, StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="5"  Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Стоимость</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="eq_cost"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Cost, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="Clients" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">ФИО</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="client_fullname"  Text="{Binding ElementName=Clients_DataGrid, Path=SelectedItem.FullName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="5" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Телефон</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="client_phone"  Text="{Binding ElementName=Clients_DataGrid, Path=SelectedItem.Phone, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="Devices" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Наименование</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="d_name"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Производитель</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="d_manufacturer"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Manufacturer, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="5" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Модель</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="d_model"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.Model, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="7"  Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Margin="0 " MinWidth="200">Гарантийный период</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="d_warrantyPeriod" Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.WarrantyPeriod, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Серийный номер</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="d_seriaNum"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.SeriaNum, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Дата покупки</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="d_purchaseDate"  Text="{Binding ElementName=Equipment_DataGrid, Path=SelectedItem.PurchaseDate, StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Stretch" Orientation="Vertical" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}"  HorizontalAlignment="Stretch" Margin="0 0"  Text="Клиент, которому принадлежит"/>
+                <ComboBox x:Name="client_forDevice" ItemsSource="{Binding Source={x:Static local:DataModel.Clients}}" Margin="0 0 20 0" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Normal">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}-{1}">
+                                        <Binding Path="FullName"/>
+                                        <Binding Path="Phone"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="OrdersNew" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="1"  VerticalAlignment="Stretch" Orientation="Vertical"  HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}"  HorizontalAlignment="Stretch" Margin="0 0"  Text="Устройство"/>
+                <ComboBox x:Name="neworder_device" ItemsSource="{Binding Source={x:Static local:DataModel.Devices}}" Margin="0 0 20 0" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Normal">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}-{1} № {2}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Model"/>
+                                        <Binding Path="SeriaNum"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical" MinWidth="150" MinHeight="70" Margin="0 0" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch">Дата поступления</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="order_date" HorizontalAlignment="Stretch" Margin="0 0 20 0"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="3" MinWidth="150" MinHeight="70" Orientation="Vertical" Margin="0 0" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch">Услуга</TextBlock>
+                <ComboBox x:Name="order_service" ItemsSource="{Binding Source={x:Static local:DataModel.Services}}" Margin="0 0 20 0" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Normal">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}: {1}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Price"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" MinWidth="200" MinHeight="70" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" Margin="0 0 0 0">Описание клиента</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="order_clientDescription" HorizontalAlignment="Stretch" MinHeight="40"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="OrdersInProcess" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="1"  VerticalAlignment="Stretch" Orientation="Vertical"  HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}"  HorizontalAlignment="Stretch" Margin="0 0"  Text="Устройство"/>
+                <ComboBox x:Name="order_device" ItemsSource="{Binding Source={x:Static local:DataModel.Devices}}" Margin="0 0 20 0" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Normal">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}-{1} № {2}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Model"/>
+                                        <Binding Path="SeriaNum"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical" MinWidth="150" MinHeight="70" Margin="0 0" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch">Дата поступления</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="orderInprocess_date" HorizontalAlignment="Stretch" Margin="0 0 20 0"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Column="5" Grid.Row="1" MinWidth="150" MinHeight="70" Orientation="Vertical" Margin="0 0" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch">Услуга</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="ordernprocess_service" HorizontalAlignment="Stretch"  Margin="0 0 20 0"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" MinWidth="200" MinHeight="70" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" Margin="0 0 0 0">Описание клиента</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="ordernprocess_workDescription" HorizontalAlignment="Stretch" MinHeight="40"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="Workers" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">ФИО</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="w_fullname" Height="27" Margin="0,0,9.8,10" ></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Должность</TextBlock>
+                <ComboBox x:Name="w_position" ItemsSource="{Binding Source={x:Static local:DataModel.Positions}}" DisplayMemberPath="Name"  Margin="0 0 20 0" HorizontalAlignment="Stretch">
+
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="5"  Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Дата начала работы</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="w_startWork" Height="27" Margin="0,0,9.8,10" ></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Дата рождения</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="w_birthday" Height="27" Margin="0,0,9.8,10"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Номер телефона</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="w_phone" Height="27" Margin="0,0,9.8,10"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="Positions" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Наименование</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="p_name" Height="27" Margin="0,0,9.8,10" ></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Заработная плата</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="p_salary" Height="27" Margin="0,0,9.8,10" ></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="Services" Visibility="Visible" Grid.ColumnSpan="2" Margin="0,0,0.4,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Наименование</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="s_name" Height="27"></TextBox>
+            </StackPanel>
+            <StackPanel  Grid.Row="1" Grid.Column="3"  Orientation="Vertical">
+                <TextBlock Style="{StaticResource TextBlockStyle}">Стоимость работ</TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="price" Height="27"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0,159,0.4,0.4" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonStyle}" x:Name="Add" Click="Add_Click" Content="Добавить"/>
+        </Grid>
+    </Grid>
+</Window>
